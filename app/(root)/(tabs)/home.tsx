@@ -4,7 +4,7 @@ import RideCard from "@/components/RideCard";
 import { icons, images } from "@/constants";
 import { useLocationStore } from "@/store";
 import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {
     ActivityIndicator,
@@ -125,6 +125,7 @@ const recentRides = [
 ];
 
 export default function Page() {
+    const router = useRouter();
     const { setUserLocation, setDestinationLocation } = useLocationStore();
     const { user } = useUser();
     const loading = true;
@@ -132,7 +133,14 @@ export default function Page() {
     const [hasPermission, setHasPermission] = useState<boolean>(false);
 
     const handleSignOut = () => {};
-    const handleDestinationPress = () => {};
+    const handleDestinationPress = (location: {
+        latitude: number;
+        longitude: number;
+        address: string;
+    }) => {
+        setDestinationLocation(location);
+        router.push("/(root)/find-ride");
+    };
 
     useEffect(() => {
         (async () => {
