@@ -69,7 +69,9 @@ export default function BookRide() {
                                     Pickup Time
                                 </Text>
                                 <Text className="text-lg font-JakartaRegular">
-                                    {formatTime(driverDetails?.time! || 5!)}
+                                    {formatTime(
+                                        parseInt(`${driverDetails?.time}`)
+                                    )}
                                 </Text>
                             </View>
 
@@ -105,7 +107,7 @@ export default function BookRide() {
                         email={user?.emailAddresses[0].emailAddress!}
                         amount={driverDetails?.price!}
                         driverId={driverDetails?.id}
-                        rideTime={driverDetails?.time}
+                        rideTime={driverDetails?.time!}
                     />
                 </View>
             </RideLayout>
