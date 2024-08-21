@@ -115,6 +115,11 @@ export default function Payment({
                     }
                 },
             },
+            defaultBillingDetails: {
+                address: {
+                    country: "CA",
+                },
+            },
             returnURL: "myapp://book-ride",
         });
 
